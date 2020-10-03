@@ -34,12 +34,15 @@ __webpack_require__.r(__webpack_exports__);
       this.setupCanvas();
       this.createWorldwind();
       this.worldWind.createBasicLayers();
+      this.worldWind.createSatelliteLayers();
+      this.worldWind.addModel('/objects/macro/', 'ball.dae', new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.Position(45, -100, 1000e3), 'activeAmateurSatellites');
     },
     setupCanvas: function setupCanvas() {
       var canvas = this.$el.querySelector('#main-view');
       canvas.width = document.body.clientWidth;
       canvas.height = document.body.clientHeight;
     },
+    update: function update(event) {},
     createWorldwind: function createWorldwind() {
       _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.Logger.setLoggingLevel(_nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.Logger.LEVEL_WARNING);
       this.worldWind = new _classes_WorldWindWrapper__WEBPACK_IMPORTED_MODULE_1__["default"](new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.WorldWindow("main-view"));
@@ -97,29 +100,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "canvas",
-        {
-          staticStyle: {
-            width: "100%",
-            height: "auto",
-            "background-color": "black"
-          },
-          attrs: { id: "main-view" }
+  return _c("div", [
+    _c(
+      "canvas",
+      {
+        staticStyle: {
+          width: "100%",
+          height: "auto",
+          "background-color": "black"
         },
-        [_vm._v("\n    Your browser does not support HTML5 Canvas.\n  ")]
-      )
-    ])
-  }
-]
+        attrs: { id: "main-view" },
+        on: { click: _vm.update }
+      },
+      [_vm._v("\n    Your browser does not support HTML5 Canvas.\n  ")]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -178,18 +175,60 @@ var WorldWindWrapper = /*#__PURE__*/function () {
     _classCallCheck(this, WorldWindWrapper);
 
     this._worldWind = worldwind;
+    this._scenes = [];
+    this._layers = {};
   }
 
   _createClass(WorldWindWrapper, [{
     key: "createBasicLayers",
     value: function createBasicLayers() {
+      this._addLayers(this.basicLayers);
+    }
+  }, {
+    key: "update",
+    value: function update(mouseX, mouseY) {
+      this._worldWind.redraw();
+    }
+  }, {
+    key: "addModel",
+    value: function addModel(path, file, position, layer) {
       var _this = this;
 
-      this.basicLayers.forEach(function (layer) {
+      var scale = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 5000;
+      var colladaLoader = new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.ColladaLoader(position);
+      colladaLoader.init({
+        dirPath: path
+      });
+      colladaLoader.load(file, function (scene) {
+        scene.scale = scale;
+
+        _this._layers[layer].addRenderable(scene);
+
+        _this._scenes.push(scene);
+      });
+    }
+  }, {
+    key: "_addLayers",
+    value: function _addLayers(layers) {
+      var _this2 = this;
+
+      var names = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      layers.forEach(function (layer, index) {
         layer.layer.enabled = layer.enabled;
 
-        _this._worldWind.addLayer(layer.layer);
+        _this2._worldWind.addLayer(layer.layer);
+
+        if (names !== null) {
+          _this2._layers[names[index]] = layer.layer;
+        }
       });
+    }
+  }, {
+    key: "createSatelliteLayers",
+    value: function createSatelliteLayers() {
+      var layers = this.satelliteLayers;
+
+      this._addLayers(Object.values(layers), Object.keys(layers));
     }
   }, {
     key: "basicLayers",
@@ -216,15 +255,19 @@ var WorldWindWrapper = /*#__PURE__*/function () {
         enabled: true
       }, // WorldWindow UI layers.
       {
-        layer: new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.CompassLayer(),
-        enabled: true
-      }, {
         layer: new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.CoordinatesDisplayLayer(this._worldWind),
         enabled: true
-      }, {
-        layer: new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.ViewControlsLayer(this._worldWind),
-        enabled: true
       }];
+    }
+  }, {
+    key: "satelliteLayers",
+    get: function get() {
+      return {
+        activeAmateurSatellites: {
+          layer: new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.RenderableLayer('activeAmateurSatellites'),
+          enabled: true
+        }
+      };
     }
   }]);
 
