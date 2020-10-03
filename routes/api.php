@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('satellites',function (Request $request) {
+
+    $position = new stdClass();
+        $position->lat = 45;
+        $position->long = -100;
+        $position->height = 1000e3;
+        $position->id = 1;
+        $position->name = 'SAT01';
+
+    return response()->json($position);
+} );
