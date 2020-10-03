@@ -28,5 +28,5 @@ Route::get('satellites',function (Request $request) {
         $position->id = 1;
         $position->name = 'SAT01';
 
-    return json_encode($position);
+    return response()->json($position);
 } );

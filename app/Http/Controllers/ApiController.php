@@ -23,6 +23,6 @@ class ApiController extends Controller
 
 
 
-        return "OI";
+        return  response()->json($position);
     }
 }
