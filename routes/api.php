@@ -20,5 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('satellites',function (Request $request) {
-    return "OI";
+
+    $position = new stdClass();
+        $position->lat = 45;
+        $position->long = -100;
+        $position->height = 1000e3;
+        $position->id = 1;
+        $position->name = 'SAT01';
+
+    return json_encode($position);
 } );
