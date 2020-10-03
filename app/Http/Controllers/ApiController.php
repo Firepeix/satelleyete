@@ -10,7 +10,7 @@ class ApiController extends Controller
      * Show the profile for the given user.
      *
      * @param  int  $id
-     * @return View
+     * @return JSON
      */
     public function satellite($id=null)
     {

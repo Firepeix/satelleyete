@@ -21,6 +21,30 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('satellites',function (Request $request) {
 
+        
+        $array= [];
+        
+        
+    for ($i=0; $i < 10; $i++) {      
+            $array[]= new stdClass();
+            $array[$i]->id= $i;
+            $array[$i]->lat+= 10;
+            $array[$i]->long= -100;
+            $array[$i]->height = 1000e3;
+            $array[$i]->name= 'SAT0'.$i;
+            $array[$i]->type = ($i % 2 == 0) ?'Comunicação':'Amador';
+            $array[$i]->status = ($i % 2 == 0) ? 'Lixo':'Ativo';
+
+    }
+
+
+
+
+    return response()->json($array);
+} );
+
+Route::get('satellites2',function (Request $request) {
+
     $position = new stdClass();
         $position->lat = 45;
         $position->long = -100;
