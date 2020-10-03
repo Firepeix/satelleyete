@@ -43,13 +43,9 @@ Route::get('satellites',function (Request $request) {
     return response()->json($array);
 } );
 
-Route::get('convert',function (Request $request) {
+Route::get('convert/{x}/{y}/{z}',function ($x,$y,$z) {
 
-    $x=39978.72318440195;
-    $y=21106.560468885247;
-    $z=-11467.721613738893;
-
-    $earthRadius = 6371;
+        $earthRadius = 6371;
         $r = sqrt($x*$x + $y*$y + $z*$z);
         $h= $r - $earthRadius;
         $latitude = asin($z/$r)*(180/pi());
@@ -64,5 +60,10 @@ Route::get('convert',function (Request $request) {
             $longitude = atan($y/$x)*(180/pi()) - 180;
         }
 
-        return response()->json([$latitude, $longitude,$h]);
+        $local = new stdClass();
+        $local->latitude = $latitude;
+        $local->longitude = $longitude;
+        $local->height = $h*1000;
+
+        return response()->json($local);
 } );
