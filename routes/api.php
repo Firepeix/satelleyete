@@ -212,13 +212,13 @@ Route::get('satellite/{id}/{begin}/{end}',function ($id,$begin,$end) {
 
     $data = json_decode($res);
 
-    $xCoord = $data->Result->Data[0]->Coordinates[0]->X;
-    $coords = $data->Result->Data[0]->Coordinates[0];
+    $xCoord = $data->Result->Data[1][0]->Coordinates[1][0]->X[1];
+    $coords = $data->Result->Data[1][0]->Coordinates[1][0];
 
     $points = [];
 
     foreach ($xCoord as $key => $value) {
-       $points[] = convert($coords->X[$key],$coords->Y[$key],$coords->Z[$key]);
+       $points[] = convert($coords->X[1][$key],$coords->Y[1][$key],$coords->Z[1][$key]);
     }
 
         return response()->json($points);
