@@ -45,6 +45,9 @@ Route::get('satellites',function (Request $request) {
 
 Route::get('convert/{x}/{y}/{z}',function ($x,$y,$z) {
 
+        $x = floatval($x);
+        $y = floatval($y);
+        $z = floatval($z);
         $earthRadius = 6371;
         $r = sqrt($x*$x + $y*$y + $z*$z);
         $h= $r - $earthRadius;
