@@ -12,17 +12,17 @@ class ApiController extends Controller
      * @param  int  $id
      * @return View
      */
-    public function satelite($id=null)
+    public function satellite($id=null)
     {
         $position = new stdClass();
         $position->lat = 45;
-        $position->long = 45;
+        $position->long = -100;
         $position->height = 1000e3;
-        $position->id = 45;
+        $position->id = 1;
         $position->name = 'SAT01';
 
 
 
-        return response()->json();
+        return response()->json($position);
     }
 }
