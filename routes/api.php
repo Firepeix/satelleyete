@@ -28,7 +28,7 @@ Route::get('satellites',function (Request $request) {
     for ($i=0; $i < 10; $i++) {      
             $array[]= new stdClass();
             $array[$i]->id= $i;
-            $array[$i]->lat+= 10;
+            $array[$i]->lat= 45+($i*10);
             $array[$i]->long= -100;
             $array[$i]->height = 1000e3;
             $array[$i]->name= 'SAT0'.$i;
