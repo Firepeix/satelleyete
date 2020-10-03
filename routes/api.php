@@ -43,14 +43,26 @@ Route::get('satellites',function (Request $request) {
     return response()->json($array);
 } );
 
-Route::get('satellites2',function (Request $request) {
+Route::get('convert',function (Request $request) {
 
-    $position = new stdClass();
-        $position->lat = 45;
-        $position->long = -100;
-        $position->height = 1000e3;
-        $position->id = 1;
-        $position->name = 'SAT01';
+    $x=39978.72318440195;
+    $y=21106.560468885247;
+    $z=-11467.721613738893;
 
-    return response()->json($position);
+    $earthRadius = 6371;
+        $r = sqrt($x*$x + $y*$y + $z*$z);
+        $h= $r - $earthRadius;
+        $latitude = asin($z/$r)*(180/pi());
+
+        if ($x>0) {
+            $longitude = atan($y/$x)*(180/pi());
+        
+        }
+        elseif ($y>0) {
+            $longitude = atan($y/$x)*(180/pi())+ 180;
+        }else {
+            $longitude = atan($y/$x)*(180/pi()) - 180;
+        }
+
+        return response()->json([$latitude, $longitude,$h]);
 } );
