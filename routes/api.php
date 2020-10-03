@@ -135,7 +135,7 @@ Route::get('satellite/{id}',function ($id='cluster2') {
         $xCoord = $data->Result->Data[1][0]->Coordinates[1][0]->X[1];
         $coords = $data->Result->Data[1][0]->Coordinates[1][0];
     } else {
-        return response()->json(["message"=> "no coordenates"])->header("HTTP/1.1 404 Not Found");
+        return response()->json(["message"=> "no coordenates"], 404);
     }
     
 
