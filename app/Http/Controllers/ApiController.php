@@ -169,7 +169,7 @@ class ApiController extends Controller
     
         $ids= [];
 
-        $client = new \MongoDB\Client('mongodb+srv://root:root@cluster0.hhll7.mongodb.net/?retryWrites=true&w=majority');
+        $client = new \MongoDB\Client(env('DB_QUERY_STRING'));//yes, no proper connection config as of yet
 
         $sate = $client->selectDatabase('satelleyete');
 
