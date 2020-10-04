@@ -14,7 +14,8 @@ export default {
   name: 'WorldWind',
   data () {
     return {
-      worldWind: null
+      worldWind: null,
+      selectSatellite: false
     }
   },
   methods: {
@@ -23,19 +24,33 @@ export default {
       this.createWorldwind();
       this.worldWind.createBasicLayers();
       this.worldWind.createSatelliteLayers();
-      this.worldWind.addModel('/objects/macro/', 'ball.dae', new WorldWind.Position(45, -100, 1000e3), 'activeAmateurSatellites');
+      this.worldWind.addSatellites(this.satellites);
     },
     setupCanvas () {
       const canvas = this.$el.querySelector('#main-view');
       canvas.width = document.body.clientWidth;
-      canvas.height = document.body.clientHeight;
+      canvas.height = document.body.clientHeight - (48 * 3);
     },
-    update (event) {
+    async update (event) {
+      if (this.selectSatellite) {
+        this.worldWind.update(event.clientX, event.clientY);
+      }
     },
     createWorldwind () {
       WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
       this.worldWind = new WorldWindWrapper(new WorldWind.WorldWindow("main-view"));
     },
+  },
+  props: {
+    /**
+     * @param {[Satellite]}
+     */
+    satellites: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
   },
   mounted () {
     this.$nextTick(() => this.construct())

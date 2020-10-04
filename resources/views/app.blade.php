@@ -8,15 +8,11 @@
         <title>Satelleyete</title>
     </head>
     <body>
-    <div id="app">
-        <v-app>
-            <v-main>
-                <v-container>
-                    <router-view></router-view>
-                </v-container>
-            </v-main>
+    <div id="app" data-api-url="{{env('API_URL')}}">
+        <v-app class="v-app-back">
+            <main-layout />
         </v-app>
     </div>
-    <script src="{{ asset('js/app.js')  }}"></script>
+    <script src="{{ mix('js/app.js')  }}"></script>
     </body>
 </html>
