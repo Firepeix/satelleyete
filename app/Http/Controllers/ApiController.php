@@ -43,7 +43,7 @@ class ApiController extends Controller
         $aa = $coll->find();
         $allSats = $aa->toArray();
 
-        return response()->json($allSat);
+        return response()->json($allSats);
 
 
     }
