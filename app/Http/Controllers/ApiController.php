@@ -35,7 +35,7 @@ class ApiController extends Controller
         return response()->json($array);
     }
 
-    public function getSatellite($id = 'cluster2'){
+    function satellite($id = 'cluster2'){
         $curl = curl_init();
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://sscweb.gsfc.nasa.gov/WS/sscr/2/locations/".$id."/20201003T135000Z,20201003T135500Z/gse/",
@@ -62,7 +62,7 @@ class ApiController extends Controller
         $xCoord = $data->Result->Data[1][0]->Coordinates[1][0]->X[1];
         $coords = $data->Result->Data[1][0]->Coordinates[1][0];
     } else {
-        return response()->json(["message"=> "no coordenates"], 404);
+        return ["message"=> "no coordenates"];
     }
     
 
@@ -72,7 +72,14 @@ class ApiController extends Controller
        $points[] = $this->convert($coords->X[1][$key],$coords->Y[1][$key],$coords->Z[1][$key]);
     }
 
-        return response()->json($points);
+        return $points;
+    }
+
+    public function getSatellite($id = 'cluster2'){
+
+        $res = $this->satellite($id);
+
+        return response()->json($res);
     }
 
     function convert($x=0,$y=0,$z=0){
@@ -177,11 +184,22 @@ class ApiController extends Controller
     
         foreach ($data as $key => $value) {
             $ids[] = new \stdClass();
-    
-            $ids[$key]->id = $value->Id;
-            $ids[$key]->name = $value->Name;
 
-            $coll->insertOne($ids[$key]);
+            $res = $this->satellite($value->Id);
+            
+            $ids[$key]->id= $value->Id;
+            $ids[$key]->name= $value->Name;
+
+            if (!isset($res['mensagem'])) {
+                $ids[$key]->lat=  $res[0][0];
+                $ids[$key]->long= $res[0][1];
+                $ids[$key]->height = $res[0][2];
+            }
+            
+            $ids[$key]->type = ($key % 2 == 0) ?'Comunicação':'Amador';
+            $ids[$key]->status = ($key % 2 == 0) ? 'Lixo':'Ativo';
+
+            $res = $coll->insertOne($ids[$key]);
         }
     
         return response()->json($ids);
