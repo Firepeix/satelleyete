@@ -37,7 +37,7 @@ class ApiController extends Controller
 
     public function allSats()
     {
-        $client = new MongoDB\Client('mongodb+srv://root:root@cluster0.hhll7.mongodb.net/?retryWrites=true&w=majority');
+        $client = new \MongoDB\Client('mongodb+srv://root:root@cluster0.hhll7.mongodb.net/?retryWrites=true&w=majority');
         $sate = $client->selectDatabase('satelleyete');
         $coll = $sate->satellite;
         $aa = $coll->find();
