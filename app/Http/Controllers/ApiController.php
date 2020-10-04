@@ -112,7 +112,7 @@ class ApiController extends Controller
             $longitude = atan($y/$x)*(180/pi()) - 180;
         }
 
-        return [$latitude, $longitude,$h];
+        return [$latitude, $longitude,$h*1000];
     }
 
     public function getIds(){
