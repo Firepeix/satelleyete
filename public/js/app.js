@@ -20604,28 +20604,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "action" },
-          [
-            _c(
-              "v-toolbar-items",
-              [
-                _c(
-                  "v-btn",
-                  {
-                    staticStyle: { padding: "9px 20px", color: "white" },
-                    attrs: { depressed: "", color: "#57B8FF", large: "" },
-                    on: { click: _vm.selectSatellite }
-                  },
-                  [_vm._v("Select Satellite")]
-                )
-              ],
-              1
-            )
-          ],
-          1
-        )
+        _c("div", { staticClass: "action" }, [_c("v-toolbar-items")], 1)
       ]),
       _vm._v(" "),
       _c(

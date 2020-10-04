@@ -751,7 +751,7 @@ var WorldWindWrapper = /*#__PURE__*/function () {
   }, {
     key: "selectSatellite",
     value: function selectSatellite(satellite) {
-      this._worldWind.goTo(new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.Position(satellite.lat, satellite["long"], satellite.height + 3e6));
+      this._worldWind.goTo(new _nasaworldwind_worldwind__WEBPACK_IMPORTED_MODULE_0___default.a.Position(satellite.lat, satellite["long"], satellite.height + 5e6));
     }
   }, {
     key: "createSatelliteLayers",

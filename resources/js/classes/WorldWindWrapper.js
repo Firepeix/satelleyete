@@ -76,7 +76,7 @@ export default class WorldWindWrapper {
   }
 
   selectSatellite (satellite) {
-    this._worldWind.goTo(new WorldWind.Position(satellite.lat, satellite.long, satellite.height + 3e6))
+    this._worldWind.goTo(new WorldWind.Position(satellite.lat, satellite.long, satellite.height + 5e6))
   }
 
   createSatelliteLayers () {
