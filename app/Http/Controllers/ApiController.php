@@ -136,4 +136,56 @@ class ApiController extends Controller
     
         return response()->json($ids);
     }
+
+    public function idStore(){
+
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://sscweb.gsfc.nasa.gov/WS/sscr/2/observatories/",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "GET",
+          CURLOPT_HTTPHEADER => array(
+            "Accept: application/json"
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+    
+        $data = json_decode($response);
+    
+        if(!isset($data->Observatory))
+        {        
+            return response()->json(["message"=> "no satellites"], 404);
+        }
+
+        $data = $data->Observatory[1];
+    
+        $ids= [];
+
+        $client = new MongoDB\Client('mongodb+srv://root:root@cluster0.hhll7.mongodb.net/?retryWrites=true&w=majority');
+
+        $sate = $client->selectDatabase('satelleyete');
+
+        $coll = $sate->satellite;
+    
+        foreach ($data as $key => $value) {
+            $ids[] = new \stdClass();
+    
+            $ids[$key]->id = $value->Id;
+            $ids[$key]->name = $value->Name;
+
+            $coll->insertOne($ids[$key]);
+        }
+    
+        return response()->json($ids);
+    }
+
+
 }

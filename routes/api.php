@@ -25,3 +25,5 @@ Route::get('getids',[ApiController::class, 'getIds']);
 
 
 Route::get('satellite/{id}',[ApiController::class, 'getSatellite']);
+
+Route::get('store',[ApiController::class, 'idStore']);
