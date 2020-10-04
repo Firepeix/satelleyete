@@ -141,6 +141,17 @@ return [
             'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('DB_HOST', 'ip172-18-0-8-btss48iosm4g00bp2q30-8081.direct.labs.play-with-docker.com'),
+            'port' => env('DB_PORT', 27017),
+            'database' => env('DB_DATABASE', 'satelleyete'),
+            'username' => env('DB_USERNAME', 'root'),
+            'password' => env('DB_PASSWORD', 'root'),
+            'options' => [
+                'db' => 'admin' // sets the authentication database required by mongo 3
+            ]
+        ],
 
     ],
 
