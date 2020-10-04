@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('satellites',[ApiController::class, 'satellites']);//função teste com dados fake
 
+Route::get('satellites1',[ApiController::class, 'allSats']);//função teste com dados fake
+
 Route::get('getids',[ApiController::class, 'getIds']);
 
 
