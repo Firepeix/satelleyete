@@ -190,7 +190,7 @@ class ApiController extends Controller
             $ids[$key]->id= $value->Id;
             $ids[$key]->name= $value->Name;
 
-            if (!isset($res['mensagem'])) {
+            if (!isset($res['message'])) {
                 dd($res);
                 $ids[$key]->lat=  $res[0][0];
                 $ids[$key]->long= $res[0][1];
