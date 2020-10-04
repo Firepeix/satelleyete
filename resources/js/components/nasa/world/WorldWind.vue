@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas @click="update" id="main-view" style="width: 100%; height: auto; background-color: black;">
+    <canvas @click="update" id="main-view" :class="canvasClass" style="width: 100%; height: auto; background-color: black;">
       Your browser does not support HTML5 Canvas.
     </canvas>
   </div>
@@ -14,8 +14,14 @@ export default {
   name: 'WorldWind',
   data () {
     return {
-      worldWind: null,
-      selectSatellite: false
+      worldWind: null
+    }
+  },
+  computed: {
+    canvasClass () {
+      return {
+        'cursor-pointer': this.selectSatellites
+      }
     }
   },
   methods: {
@@ -31,9 +37,13 @@ export default {
       canvas.width = document.body.clientWidth;
       canvas.height = document.body.clientHeight - (48 * 3);
     },
+    selectSatellite (id) {
+      this.worldWind.selectSatellite(this.satellites.find(satellite => id === satellite.id))
+    },
     async update (event) {
-      if (this.selectSatellite) {
+      if (this.selectSatellites) {
         this.worldWind.update(event.clientX, event.clientY);
+        this.$emit('updated')
       }
     },
     createWorldwind () {
@@ -42,14 +52,15 @@ export default {
     },
   },
   props: {
-    /**
-     * @param {[Satellite]}
-     */
     satellites: {
       type: Array,
       default () {
         return []
       }
+    },
+    selectSatellites: {
+      type: Boolean,
+      default: false
     }
   },
   mounted () {
@@ -58,6 +69,7 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+.cursor-pointer
+  cursor pointer
 </style>

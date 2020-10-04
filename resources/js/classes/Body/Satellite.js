@@ -38,6 +38,6 @@ export default class Satellite {
   }
 
   get object () {
-    return 'duck.dae';
+    return 'ball.dae';
   }
 }

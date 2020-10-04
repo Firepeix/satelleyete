@@ -2023,12 +2023,73 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_nasa_world_SatelliteList__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/nasa/world/SatelliteList */ "./resources/js/components/nasa/world/SatelliteList.vue");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'MainLayout',
+  components: {
+    SatelliteList: _components_nasa_world_SatelliteList__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      navbar: true,
+      satellites: []
+    };
+  },
+  methods: {
+    selectSatellite: function selectSatellite() {
+      this.navbar = !this.navbar;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -2047,11 +2108,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'MainLayout',
+  name: 'SatelliteList',
   data: function data() {
     return {
-      navbar: false
+      search: '',
+      filteredSatellite: []
     };
+  },
+  watch: {
+    search: function search() {
+      if (this.search !== '' && this.search !== null) {
+        this.filteredSatellite = this.searchSatellites();
+        return;
+      }
+
+      this.filteredSatellite = this.satellites;
+    },
+    satellites: function satellites() {
+      if (this.search !== '' && this.search !== null) {
+        this.filteredSatellite = this.searchSatellites();
+        return;
+      }
+
+      this.filteredSatellite = this.satellites;
+    }
+  },
+  methods: {
+    searchSatellites: function searchSatellites() {
+      var _this = this;
+
+      return this.satellites.filter(function (satellite) {
+        return satellite.name.toLowerCase().indexOf(_this.search.toLowerCase()) > -1;
+      });
+    }
+  },
+  props: {
+    satellites: {
+      /**
+       * @param {[Satellite]}
+       */
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.$nextTick(function () {
+      _this2.filteredSatellite = _this2.satellites;
+    });
   }
 });
 
@@ -2088,7 +2195,26 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".v-application--wrap {\n  background-color: #000;\n}\n", ""]);
+exports.push([module.i, ".v-application--wrap {\n  background-color: #000;\n}\n.v-toolbar__content {\n  justify-content: space-between;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "label.v-label.theme--light,\n.v-icon.notranslate.mdi.mdi-magnify.theme--light {\n  color: #fff;\n}\n.theme--light.v-input input {\n  color: #fff !important;\n}\n.theme--light.v-text-field > .v-input__control>.v-input__slot:before {\n  border-color: #fff !important;\n  border-top-color: #fff !important;\n  border-right-color: #fff !important;\n  border-bottom-color: #fff !important;\n  border-left-color: #fff !important;\n}\n", ""]);
 
 // exports
 
@@ -19819,6 +19945,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--10-2!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--10-2!../../../../../node_modules/stylus-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SatelliteList.vue?vue&type=style&index=0&lang=stylus& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -20422,24 +20578,55 @@ var render = function() {
     "div",
     { staticClass: "main-layout" },
     [
-      _c(
-        "v-app-bar",
-        { attrs: { app: "", color: "#57B8FF" } },
-        [
-          _c("v-app-bar-nav-icon", {
-            on: {
-              click: function($event) {
-                _vm.navbar = !_vm.navbar
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("v-toolbar-title", { staticClass: "text--white" }, [
-            _vm._v("Application")
-          ])
-        ],
-        1
-      ),
+      _c("v-app-bar", { attrs: { app: "", color: "#57B8FF" } }, [
+        _c(
+          "div",
+          { staticClass: "logo" },
+          [
+            _c("v-toolbar-title", { staticClass: "text--white" }, [
+              _c(
+                "div",
+                { staticClass: "d-flex" },
+                [
+                  _c("v-img", {
+                    attrs: { src: "images/logo-pic.png", width: "114px" }
+                  }),
+                  _vm._v(" "),
+                  _c("v-img", {
+                    staticStyle: { "margin-left": "24px" },
+                    attrs: { src: "images/logo-name.png", width: "339px" }
+                  })
+                ],
+                1
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "action" },
+          [
+            _c(
+              "v-toolbar-items",
+              [
+                _c(
+                  "v-btn",
+                  {
+                    staticStyle: { padding: "9px 20px", color: "white" },
+                    attrs: { depressed: "", color: "#57B8FF", large: "" },
+                    on: { click: _vm.selectSatellite }
+                  },
+                  [_vm._v("Select Satellite")]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c(
         "v-main",
@@ -20447,7 +20634,30 @@ var render = function() {
           _c(
             "v-container",
             { staticStyle: { "max-width": "none" } },
-            [_c("v-row", [_c("v-col", [_c("router-view")], 1)], 1)],
+            [
+              _c(
+                "v-row",
+                [
+                  _c(
+                    "v-col",
+                    [
+                      _c("router-view", {
+                        ref: "page",
+                        model: {
+                          value: _vm.satellites,
+                          callback: function($$v) {
+                            _vm.satellites = $$v
+                          },
+                          expression: "satellites"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
             1
           )
         ],
@@ -20462,10 +20672,133 @@ var render = function() {
         },
         [
           _c("v-col", { staticClass: "text-center", attrs: { cols: "12" } }, [
-            _vm._v("\r\n      " + _vm._s(new Date().getFullYear()) + " — "),
-            _c("strong", [_vm._v("Vuetify")])
+            _vm._v("\r\n      2020 — "),
+            _c("strong", [_vm._v("NASA Hackathon")])
           ])
         ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-navigation-drawer",
+        {
+          attrs: { right: "", color: "#0069B5", app: "" },
+          model: {
+            value: _vm.navbar,
+            callback: function($$v) {
+              _vm.navbar = $$v
+            },
+            expression: "navbar"
+          }
+        },
+        [
+          _c("satellite-list", {
+            attrs: { satellites: _vm.satellites },
+            on: {
+              "select-sat": function(id) {
+                return _vm.$refs.page.selectSat(id)
+              },
+              "hover-sat": function(id) {
+                return _vm.$refs.page.hoverSat(id)
+              }
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-list",
+    [
+      _c(
+        "v-list-item",
+        [
+          _c("v-text-field", {
+            attrs: {
+              clearable: "",
+              color: "#34DAFF",
+              "prepend-icon": "mdi-magnify",
+              label: "Search"
+            },
+            model: {
+              value: _vm.search,
+              callback: function($$v) {
+                _vm.search = $$v
+              },
+              expression: "search"
+            }
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-list-item-group",
+        { attrs: { color: "white" } },
+        _vm._l(_vm.filteredSatellite, function(satellite) {
+          return _c(
+            "v-list-item",
+            { key: satellite.id, attrs: { link: "" } },
+            [
+              _c(
+                "v-list-item-icon",
+                [
+                  _c("v-icon", {
+                    staticStyle: { color: "white" },
+                    domProps: { textContent: _vm._s("mdi-satellite-variant") }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item-content",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$emit("select-sat", satellite.id)
+                    },
+                    hover: function($event) {
+                      return _vm.$emit("hover-sat", satellite.id)
+                    }
+                  }
+                },
+                [
+                  _c("v-list-item-title", { staticStyle: { color: "white" } }, [
+                    _vm._v(_vm._s(satellite.name))
+                  ])
+                ],
+                1
+              )
+            ],
+            1
+          )
+        }),
         1
       )
     ],
@@ -79662,6 +79995,93 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   }
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$apiUrl = app.$el.getAttribute('data-api-url');
+
+/***/ }),
+
+/***/ "./resources/js/components/nasa/world/SatelliteList.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/nasa/world/SatelliteList.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SatelliteList.vue?vue&type=template&id=12731119& */ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119&");
+/* harmony import */ var _SatelliteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SatelliteList.vue?vue&type=script&lang=js& */ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SatelliteList.vue?vue&type=style&index=0&lang=stylus& */ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _SatelliteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/nasa/world/SatelliteList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SatelliteList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus& ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/style-loader!../../../../../node_modules/css-loader!../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../node_modules/postcss-loader/src??ref--10-2!../../../../../node_modules/stylus-loader/dist/cjs.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SatelliteList.vue?vue&type=style&index=0&lang=stylus& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/stylus-loader/dist/cjs.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=style&index=0&lang=stylus&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_10_2_node_modules_stylus_loader_dist_cjs_js_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_style_index_0_lang_stylus___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119& ***!
+  \*********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./SatelliteList.vue?vue&type=template&id=12731119& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/nasa/world/SatelliteList.vue?vue&type=template&id=12731119&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SatelliteList_vue_vue_type_template_id_12731119___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
